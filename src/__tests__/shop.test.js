@@ -18,4 +18,21 @@ describe("Gilded rose shop", function () {
         expect(gildedRose.items[0].quality).toEqual(3);
     });
 
+    it("quality degrades twice as fast for passed products", function() {
+        // - Once the sell by date has passed, Quality degrades twice as fast
+        const item = new Item(genericProduct, 0, 4);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(2);
+    });
+
+    it("item quality cannot be negative ", function() {
+        // The Quality of an item is never negative
+        const item = new Item(genericProduct, 1, 0);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(0);
+    });
+
+    
 });
