@@ -42,5 +42,14 @@ describe("Gilded rose shop", function () {
         expect(gildedRose.items[0].quality).toEqual(2);
     });
 
+    it("aged brie product quality cannot be more than fifty", function() {
+        // - The Quality of an item is never more than 50
+        const item = new Item(agedBrieSKU, 1, 50);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(50);
+    });
     
+    
+
 });
