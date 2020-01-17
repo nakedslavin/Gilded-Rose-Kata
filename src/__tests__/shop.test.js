@@ -1,6 +1,6 @@
 import { Shop } from '../model/shop';
 import { Item } from '../model/item';
-import { genericProduct } from '../model/catalog';
+import { genericProduct, sulfurasHandofRagnaros, agedBrieSKU, backstagePassesToATafkalConcert } from '../model/catalog';
 
 describe("Gilded rose shop", function () {
     
@@ -70,5 +70,39 @@ describe("Gilded rose shop", function () {
         expect(gildedRose.items[0].quality).toEqual(2);
     });
 
-    
+    it("backstagePass has reverse quality system and increase by when 10 days or less left ", function() {
+        // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        // Quality drops to 0 after the concert
+        const item = new Item(backstagePassesToATafkalConcert, 10, 4);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        
+        expect(gildedRose.items[0].quality).toEqual(6);
+    });
+
+    it("backstagePass has reverse quality system and increase by 3 when 5 days or less left ", function() {
+        // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        // Quality drops to 0 after the concert
+        const item = new Item(backstagePassesToATafkalConcert, 5, 4);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        
+        expect(gildedRose.items[0].quality).toEqual(7);
+    });
+
+    it("backstagePass has reverse quality system and quality drops to zero after the concert ", function() {
+        // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        // Quality drops to 0 after the concert
+        const item = new Item(backstagePassesToATafkalConcert, 0, 4);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+
+        expect(gildedRose.items[0].quality).toEqual(0);
+    });
+
+
+
 });
