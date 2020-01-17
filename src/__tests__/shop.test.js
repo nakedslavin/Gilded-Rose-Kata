@@ -34,5 +34,13 @@ describe("Gilded rose shop", function () {
         expect(gildedRose.items[0].quality).toEqual(0);
     });
 
+    it("aged brie product has reverse quality system", function() {
+        // "Aged Brie" actually increases in Quality the older it gets
+        const item = new Item(agedBrieSKU, 1, 1);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        expect(gildedRose.items[0].quality).toEqual(2);
+    });
+
     
 });
