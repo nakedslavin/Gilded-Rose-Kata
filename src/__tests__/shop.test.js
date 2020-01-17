@@ -59,4 +59,16 @@ describe("Gilded rose shop", function () {
         expect(gildedRose.items[0].quality).toEqual(1);
     });
 
+    it("backstagePass has reverse quality system ", function() {
+        // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        // Quality drops to 0 after the concert
+        const item = new Item(backstagePassesToATafkalConcert, 20, 1);
+        const gildedRose = new Shop([item]);
+        gildedRose.updateQuality();
+        
+        expect(gildedRose.items[0].quality).toEqual(2);
+    });
+
+    
 });
