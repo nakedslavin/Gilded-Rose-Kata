@@ -1,6 +1,6 @@
 import { Shop } from '../model/shop';
 import { Item } from '../model/item';
-import { genericProduct, sulfurasHandofRagnaros, agedBrieSKU, backstagePassesToATafkalConcert } from '../model/catalog';
+import { genericProduct, sulfurasHandofRagnaros, agedBrieSKU, backstagePassesToATafkalConcert, conjuredProduct } from '../model/catalog';
 
 describe("Gilded rose shop", function () {
     
