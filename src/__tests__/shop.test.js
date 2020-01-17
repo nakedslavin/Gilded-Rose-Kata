@@ -1,4 +1,6 @@
 import { Shop } from '../model/shop';
+import { Item } from '../model/item';
+import { genericProduct } from '../model/catalog';
 
 describe("Gilded rose shop", function () {
     
